@@ -1,4 +1,4 @@
-package com.romeu.demo;
+package com.romeu.bookstore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
