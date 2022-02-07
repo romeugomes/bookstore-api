@@ -7,17 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.romeu.bookstore.domain.Categoria;
 import com.romeu.bookstore.domain.Livro;
-import com.romeu.bookstore.repositories.CategoriaRepositry;
-import com.romeu.bookstore.repositories.LivroRepositry;
+import com.romeu.bookstore.repositories.CategoriaRepository;
+import com.romeu.bookstore.repositories.LivroRepository;
 
 @Service
 public class DBService {
 
 	@Autowired
-	private CategoriaRepositry categoriaRepositry;
+	private CategoriaRepository categoriaRepositry;
 
 	@Autowired
-	private LivroRepositry livroRepositry;
+	private LivroRepository livroRepositry;
 	
 	public void instanciaBaseDeDados() {
 		Categoria cat1 = new Categoria(null, "Informática", "Livro de Informática");
@@ -35,7 +35,6 @@ public class DBService {
 		
 		categoriaRepositry.saveAll(Arrays.asList(cat1, cat2, cat3));
 		livroRepositry.saveAll(Arrays.asList(l1, l2, l3, l4, l5));
-
 
 	}
 
