@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.romeu.bookstore.domain.Categoria;
 import com.romeu.bookstore.domain.Livro;
 import com.romeu.bookstore.dtos.LivroDTO;
 import com.romeu.bookstore.exceptions.ObjectNotFoundException;
@@ -40,6 +41,13 @@ public class LivroService {
 
 	public Livro create(Livro obj) {
 		obj.setId(null);
+		return livroRepository.save(obj);
+	}
+	
+	public Livro create(Livro obj, Integer id_categoria) {
+		Categoria categoria = categoriaService.findByID(id_categoria);
+		obj.setId(null);
+		obj.setCategoria(categoria);
 		return livroRepository.save(obj);
 	}
 

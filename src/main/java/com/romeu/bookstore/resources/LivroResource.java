@@ -45,17 +45,23 @@ public class LivroResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<Livro> create(@RequestBody Livro obj) {
-		obj = livroService.create(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).body(obj);
+	public ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") Integer id_cat,
+			@RequestBody Livro obj) {
+		Livro newLivro = livroService.create(obj, id_cat);
+		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}").buildAndExpand(newLivro.getId())
+				.toUri();
+		return ResponseEntity.created(uri).build();
 	}
 
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Livro> update(@PathVariable Integer id, @RequestBody Livro obj) {
 		Livro newObj = livroService.update(id, obj);
 		return ResponseEntity.ok().body(newObj);
-
 	}
+
+	/*
+	 * public ResponseEntity<Livro> create (@RequestBody Livro obj){ Livro obj =
+	 * livroService.create(obj); return ResponseEntity<Livro>.ok().body(obj) }
+	 */
 
 }
