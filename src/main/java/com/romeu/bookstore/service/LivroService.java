@@ -43,7 +43,7 @@ public class LivroService {
 		obj.setId(null);
 		return livroRepository.save(obj);
 	}
-	
+
 	public Livro create(Livro obj, Integer id_categoria) {
 		Categoria categoria = categoriaService.findByID(id_categoria);
 		obj.setId(null);
@@ -71,6 +71,11 @@ public class LivroService {
 		newObj.setNome_autor(obj.getNome_autor());
 		newObj.setTexto(obj.getTexto());
 
+	}
+
+	public void delete(Integer id) {
+		Livro obj = findById(id);
+		livroRepository.delete(obj);
 	}
 
 }
