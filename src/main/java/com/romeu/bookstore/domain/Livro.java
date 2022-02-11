@@ -9,20 +9,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Livro implements Serializable{
-	
-	
+public class Livro implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
+	@NotEmpty
+	@Length(min = 3, max = 100, message = "O título deve ter entre 3 e 100 caractéres!")
 	private String titulo;
+
+	@NotEmpty
+	@Length(min = 3, max = 100, message = "O Nome do autor deve ter entre 3 e 100 caractéres!")
 	private String nome_autor;
+
+	@NotEmpty
 	private String texto;
 
 	@JsonIgnore
